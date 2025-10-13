@@ -1,53 +1,53 @@
 #include <reg52.h>
 
-sbit START = P1^0;        // Æô¶¯°´Å¥£¨µÍÓÐÐ§£©
-sbit REVERSE_SW = P1^1;   // ·´×ª¿ª¹Ø£º¸ß=Õý×ª£¬µÍ=·´×ª
-sbit STOP = P1^2;         // Í£Ö¹°´Å¥£¨µÍÓÐÐ§£©
-sbit PUMP_MODE = P1^3;    // ÓÍ±ÃÄ£Ê½£º¸ß=Ð­Í¬£¬µÍ=¶ÀÁ¢
+sbit START = P1^0;        
+sbit REVERSE_SW = P1^1;   
+sbit STOP = P1^2;         
+sbit PUMP_MODE = P1^3;    
 
-// Ö¸Ê¾µÆ£¨¹²Ñô¼«£ºµÍÁÁ£©
-sbit LED_POWER = P3^0;    // µçÔ´µÆ£¨³£ÁÁ£©
-sbit LED_START = P3^1;    // Æô¶¯µÆ
-sbit LED_STOP = P3^2;     // Í£Ö¹µÆ
-sbit LED_PUMP = P3^3;     // ÓÍ±ÃµÆ
-sbit LED_MOTOR_F = P3^4;  // Õý×ªµÆ
-sbit LED_MOTOR_R = P3^5;  // ·´×ªµÆ
-sbit LED_COOL = P3^6;     // ÀäÈ´µÆ
-sbit LED_DIR_WAIT = P3^7; // ·½ÏòµÈ´ýµÆ
+// Ö¸Ê¾ï¿½Æ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+sbit LED_POWER = P3^0;    // ï¿½ï¿½Ô´ï¿½Æ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+sbit LED_START = P3^1;    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+sbit LED_STOP = P3^2;     // Í£Ö¹ï¿½ï¿½
+sbit LED_PUMP = P3^3;     // ï¿½Í±Ãµï¿½
+sbit LED_MOTOR_F = P3^4;  // ï¿½ï¿½×ªï¿½ï¿½
+sbit LED_MOTOR_R = P3^5;  // ï¿½ï¿½×ªï¿½ï¿½
+sbit LED_COOL = P3^6;     // ï¿½ï¿½È´ï¿½ï¿½
+sbit LED_DIR_WAIT = P3^7; // ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½
 
-// L298Çý¶¯
-sbit IN1 = P2^2;          // µç»úÕý×ª¿ØÖÆ
-sbit IN2 = P2^3;          // µç»ú·´×ª¿ØÖÆ
-sbit IN3 = P2^4;          // ÓÍ±Ã·½Ïò£¨¹Ì¶¨µÍ£©
-sbit IN4 = P2^5;          // ÓÍ±ÃÊ¹ÄÜ£¨¸ß=Æô¶¯£©
+// L298ï¿½ï¿½ï¿½ï¿½
+sbit IN1 = P2^2;          // ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½
+sbit IN2 = P2^3;          // ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½
+sbit IN3 = P2^4;          // ï¿½Í±Ã·ï¿½ï¿½ò£¨¹Ì¶ï¿½ï¿½Í£ï¿½
+sbit IN4 = P2^5;          // ï¿½Í±ï¿½Ê¹ï¿½Ü£ï¿½ï¿½ï¿½=ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-// ÊýÂë¹ÜÏà¹Ø
-sbit DUAN = P2^6;         // ¶ÎËø´æ
-sbit WEI = P2^7;          // Î»Ëø´æ
-#define DataPort P0       // ¶ÎÂëÊý¾Ý¿Ú
-unsigned char code duanMa[] = {0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F}; // ¹²Òõ¼«¶ÎÂë
-unsigned char code weiMa[] = {0xFE,0xFD,0xFB,0xF7};                               // Î»Âë£¨µÍÓÐÐ§£©
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+sbit DUAN = P2^6;         // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+sbit WEI = P2^7;          // Î»ï¿½ï¿½ï¿½ï¿½
+#define DataPort P0       // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½
+unsigned char code duanMa[] = {0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F}; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+unsigned char code weiMa[] = {0xFE,0xFD,0xFB,0xF7};                               // Î»ï¿½ë£¨ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
 
-// È«¾Ö±äÁ¿
+// È«ï¿½Ö±ï¿½ï¿½ï¿½
 unsigned char dispBuf[4] = {0,0,0,0};
-unsigned int workCount = 0;           // ¹¤×÷´ÎÊý£¨0-4£©
-unsigned int pumpPreTimer = 0;        // ÓÍ±ÃÔ¤ÈÈ¼ÆÊ±£¨10Ãë£©
-unsigned int motorTimer = 0;          // µç»úÔËÐÐ¼ÆÊ±£¨20Ãë£©
-unsigned int coolTimer = 0;           // ÀäÈ´¼ÆÊ±£¨10Ãë£©
-unsigned int dirWaitTimer = 0;        // ·½ÏòµÈ´ý¼ÆÊ±£¨10Ãë£©
+unsigned int workCount = 0;           // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0-4ï¿½ï¿½
+unsigned int pumpPreTimer = 0;        // ï¿½Í±ï¿½Ô¤ï¿½È¼ï¿½Ê±ï¿½ï¿½10ï¿½ë£©
+unsigned int motorTimer = 0;          // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¼ï¿½Ê±ï¿½ï¿½20ï¿½ë£©
+unsigned int coolTimer = 0;           // ï¿½ï¿½È´ï¿½ï¿½Ê±ï¿½ï¿½10ï¿½ë£©
+unsigned int dirWaitTimer = 0;        // ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½Ê±ï¿½ï¿½10ï¿½ë£©
 
-// ×´Ì¬±êÖ¾
-bit pumpPreEn = 0;         // ÓÍ±ÃÔ¤ÈÈÊ¹ÄÜ£¨Ç°10Ãë£©
-bit motorEn = 0;           // µç»úÔËÐÐÊ¹ÄÜ£¨ºó20Ãë£©
-bit cooling = 0;           // ÀäÈ´ÖÐ
-bit dirWait = 0;           // ·½ÏòµÈ´ýÖÐ
-bit currDir;               // µ±Ç°ÔËÐÐ·½Ïò£¨ÉúÐ§·½Ïò£©
-bit targetDir;             // Ä¿±ê·½Ïò£¨¿ª¹ØÊµÊ±Öµ£©
-bit dirChanged = 0;        // ·½Ïò±ä¸ü±ê¼Ç£¨ÖÜÆÚÄÚÊÇ·ñÇÐ»»£©
-bit needCool = 0;          // ÀäÈ´ÐèÇó±ê¼Ç£¨µÚ5´ÎÔËÐÐºóÎª1£©
-bit timerEn = 0;           // ¶¨Ê±Æ÷×ÜÊ¹ÄÜ
+// ×´Ì¬ï¿½ï¿½Ö¾
+bit pumpPreEn = 0;         // ï¿½Í±ï¿½Ô¤ï¿½ï¿½Ê¹ï¿½Ü£ï¿½Ç°10ï¿½ë£©
+bit motorEn = 0;           // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ü£ï¿½ï¿½ï¿½20ï¿½ë£©
+bit cooling = 0;           // ï¿½ï¿½È´ï¿½ï¿½
+bit dirWait = 0;           // ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½
+bit currDir;               // ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Ð·ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½
+bit targetDir;             // Ä¿ï¿½ê·½ï¿½ò£¨¿ï¿½ï¿½ï¿½ÊµÊ±Öµï¿½ï¿½
+bit dirChanged = 0;        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ð»ï¿½ï¿½ï¿½
+bit needCool = 0;          // ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½ï¿½ï¿½5ï¿½ï¿½ï¿½ï¿½ï¿½Ðºï¿½Îª1ï¿½ï¿½
+bit timerEn = 0;           // ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½
 
-// º¯ÊýÉùÃ÷
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void Timer0Init();
 void display();
 void updateDisplay();
@@ -57,12 +57,12 @@ void checkDirChange();
 void delayMs(unsigned int ms);
 void delayUs(unsigned int us);
 
-// Ö÷º¯Êý
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void main() {
-    // ³õÊ¼»¯
+    // ï¿½ï¿½Ê¼ï¿½ï¿½
     currDir = REVERSE_SW;
     targetDir = REVERSE_SW;
-    LED_POWER = 0;  // µçÔ´µÆ³£ÁÁ
+    LED_POWER = 0;  // ï¿½ï¿½Ô´ï¿½Æ³ï¿½ï¿½ï¿½
     LED_START = 1;
     LED_STOP = 1;
     LED_PUMP = 1;
@@ -81,7 +81,7 @@ void main() {
         updateDisplay();
         display();
 
-        // Í£Ö¹Âß¼­£ºÖØÖÃËùÓÐ×´Ì¬
+        // Í£Ö¹ï¿½ß¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
         if(STOP == 0) {
             delayMs(10);
             if(STOP == 0) {
@@ -91,7 +91,7 @@ void main() {
                 cooling = 0;
                 dirWait = 0;
                 dirChanged = 0;
-                needCool = 0;  // ÖØÖÃÀäÈ´ÐèÇó
+                needCool = 0;  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½
                 timerEn = 0;
                 workCount = 0;
                 pumpPreTimer = 0;
@@ -99,32 +99,32 @@ void main() {
                 coolTimer = 0;
                 dirWaitTimer = 0;
                 motorControl(0);
-                // ¹Ø±ÕÖ¸Ê¾µÆ
+                // ï¿½Ø±ï¿½Ö¸Ê¾ï¿½ï¿½
                 LED_DIR_WAIT = 1;
                 LED_START = 1;
                 LED_COOL = 1;
                 LED_PUMP = 1;
-                // Í¬²½·½Ïò
+                // Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 currDir = targetDir;
                 while(STOP == 0);
                 LED_STOP = 1;
             }
         }
 
-        // ·½ÏòµÈ´ý½×¶Î£ºµÈ´ý½áÊøºó´¦ÀíÀäÈ´ÐèÇó
+        // ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½×¶Î£ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½
         if(dirWait) {
             LED_DIR_WAIT = 0;
             if(dirWaitTimer >= 10000) {
                 dirWait = 0;
                 dirWaitTimer = 0;
-                currDir = targetDir;    // µÈ´ý½áÊø¸üÐÂ·½Ïò
+                currDir = targetDir;    // ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½
                 dirChanged = 0;
                 LED_DIR_WAIT = 1;
 
-                // ÈôÓÐÀäÈ´ÐèÇó£¬µÈ´ý½áÊøºó×Ô¶¯½øÈëÀäÈ´
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ó£¬µÈ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´
                 if(needCool) {
                     cooling = 1;
-                    needCool = 0;       // Çå³ýÀäÈ´ÐèÇó
+                    needCool = 0;       // ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½
                     coolTimer = 0;
                     timerEn = 1;
                 } else {
@@ -134,7 +134,7 @@ void main() {
             continue;
         }
 
-        // ÀäÈ´½×¶Î£ºÕý³£Ö´ÐÐ
+        // ï¿½ï¿½È´ï¿½×¶Î£ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½
         if(cooling) {
             LED_COOL = 0;
             if(coolTimer >= 10000) {
@@ -146,7 +146,7 @@ void main() {
             continue;
         }
 
-        // Æô¶¯Âß¼­£º½öÎÞÔËÐÐ/ÎÞÀäÈ´/ÎÞµÈ´ýÊ±¿ÉÆô¶¯
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½È´/ï¿½ÞµÈ´ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if(START == 0 && !pumpPreEn && !motorEn && !cooling && !dirWait) {
             delayMs(10);
             if(START == 0) {
@@ -158,10 +158,10 @@ void main() {
             }
         }
 
-        // ÓÍ±ÃÔ¤ÈÈ½×¶Î½áÊø£º´¦Àí·½Ïò±ä¸ü
+        // ï¿½Í±ï¿½Ô¤ï¿½È½×¶Î½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if(pumpPreEn && pumpPreTimer >= 10000) {
             pumpPreEn = 0;
-            // ÓÐ·½Ïò±ä¸ü¡ú´¥·¢µÈ´ý£¬ÎÞ±ä¸ü¡úÆô¶¯µç»ú
+            // ï¿½Ð·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½Þ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if(dirChanged) {
                 dirWait = 1;
                 dirWaitTimer = 0;
@@ -175,17 +175,17 @@ void main() {
             }
         }
 
-        // µç»úÔËÐÐ½×¶Î½áÊø£º´¦Àí·½Ïò±ä¸ü+ÀäÈ´ÐèÇó
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð½×¶Î½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½+ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½
         if(motorEn && motorTimer >= 20000) {
             motorEn = 0;
             motorControl(0);
             workCount++;
 
-            // ±ê¼ÇÀäÈ´£ºµÚ5´ÎÔËÐÐºóÎª1
+            // ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½5ï¿½ï¿½ï¿½ï¿½ï¿½Ðºï¿½Îª1
             needCool = (workCount >= 5) ? 1 : 0;
-            if(needCool) workCount = 0;  // ÖØÖÃ¹¤×÷´ÎÊý
+            if(needCool) workCount = 0;  // ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-            // ÓÐ·½Ïò±ä¸ü¡ú´¥·¢µÈ´ý£¬ÎÞ±ä¸ü¡úÖ±½ÓÀäÈ´
+            // ï¿½Ð·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½Þ±ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½È´
             if(dirChanged) {
                 dirWait = 1;
                 dirWaitTimer = 0;
@@ -204,7 +204,7 @@ void main() {
     }
 }
 
-// ¶¨Ê±Æ÷0³õÊ¼»¯£¨1msÖÐ¶Ï£©
+// ï¿½ï¿½Ê±ï¿½ï¿½0ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½1msï¿½Ð¶Ï£ï¿½
 void Timer0Init() {
     TMOD &= 0xF0;
     TMOD |= 0x01;
@@ -226,7 +226,7 @@ void Timer0_ISR() interrupt 1 {
     }
 }
 
-// ÊýÂë¹ÜÉ¨Ãè
+// ï¿½ï¿½ï¿½ï¿½ï¿½É¨ï¿½ï¿½
 void display() {
     static unsigned char pos = 0;
     DataPort = 0x00;
@@ -239,7 +239,7 @@ void display() {
     pos = (pos + 1) % 4;
 }
 
-// ¸üÐÂÏÔÊ¾Êý¾Ý
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
 void updateDisplay() {
     unsigned int remainTime = 0;
     if(pumpPreEn) remainTime = 10 - pumpPreTimer/1000;
@@ -254,7 +254,7 @@ void updateDisplay() {
     dispBuf[3] = remainTime % 10;
 }
 
-// ÓÍ±Ã¿ØÖÆ
+// ï¿½Í±Ã¿ï¿½ï¿½ï¿½
 void pumpControl() {
     bit pumpRun = 0;
     if(pumpPreEn) pumpRun = 1;
@@ -263,13 +263,13 @@ void pumpControl() {
     LED_PUMP = !pumpRun;
 }
 
-// µç»ú¿ØÖÆ
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void motorControl(bit on) {
     if(on) {
-        if(currDir) { // Õý×ª£¨REVERSE_SW=¸ß£©
+        if(currDir) { // ï¿½ï¿½×ªï¿½ï¿½REVERSE_SW=ï¿½ß£ï¿½
             IN1 = 1; IN2 = 0;
             LED_MOTOR_F = 0; LED_MOTOR_R = 1;
-        } else { // ·´×ª£¨REVERSE_SW=µÍ£©
+        } else { // ï¿½ï¿½×ªï¿½ï¿½REVERSE_SW=ï¿½Í£ï¿½
             IN1 = 0; IN2 = 1;
             LED_MOTOR_F = 1; LED_MOTOR_R = 0;
         }
@@ -279,20 +279,20 @@ void motorControl(bit on) {
     }
 }
 
-// ¼ì²â·½ÏòÇÐ»»
+// ï¿½ï¿½â·½ï¿½ï¿½ï¿½Ð»ï¿½
 void checkDirChange() {
     targetDir = REVERSE_SW;
 
-    // ÀäÈ´½×¶Î£ºÖ±½Ó¸üÐÂ·½Ïò
+    // ï¿½ï¿½È´ï¿½×¶Î£ï¿½Ö±ï¿½Ó¸ï¿½ï¿½Â·ï¿½ï¿½ï¿½
     if(cooling && targetDir != currDir) {
         currDir = targetDir;
         return;
     }
 
-    // ·½ÏòµÈ´ý½×¶Î£º²»´¦Àí
+    // ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½×¶Î£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     if(dirWait) return;
 
-    // ·ÇÔËÐÐÇÒ·ÇÀäÈ´£ºÁ¢¼´´¥·¢µÈ´ý
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò·ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½
     if(!pumpPreEn && !motorEn && !cooling && targetDir != currDir) {
         dirWait = 1;
         dirWaitTimer = 0;
@@ -300,13 +300,13 @@ void checkDirChange() {
         return;
     }
 
-    // ÓÍ±Ã/µç»úÔËÐÐ½×¶Î£º±ê¼Ç±ä¸ü
+    // ï¿½Í±ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð½×¶Î£ï¿½ï¿½ï¿½Ç±ï¿½ï¿½
     if((pumpPreEn || motorEn) && targetDir != currDir) {
         dirChanged = 1;
     }
 }
 
-// ÑÓÊ±º¯Êý
+// ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
 void delayMs(unsigned int ms) {
     while(ms--) delayUs(1000);
 }
